@@ -1,0 +1,151 @@
+﻿<Window x:Class="CrediMujer.Inicio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:CrediMujer"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Inicio" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Credi-MUJER" Foreground="White" FontSize="25" FontWeight="Bold" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label Grid.Column="1" Content="email: contacto@credimujer.com" Foreground="Gold" 
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,30,10"/>
+
+            <StackPanel Grid.Column="1" >
+                
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="#FFEBEB">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Width="350" Background="White" Margin="10" HorizontalAlignment="Center">
+                    <HeaderedContentControl Header="¿Cómo es tu negocio?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+                    <ListView x:Name="negociosList" BorderThickness="0" Margin="0,30,0,0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="2" Width="300"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Source="{Binding UrlImagen}" Width="80" Height="80"/>
+                                    <TextBlock Text="{Binding Nombre}" TextWrapping="Wrap" MaxWidth="130" TextAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+
+                <StackPanel Width="350" Background="White" Margin="10">
+                    <HeaderedContentControl Header="¿Cuál es tu producto?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+                    <ListView x:Name="productosBox" BorderThickness="0" Margin="0,30,0,0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="2" Width="300"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Source="{Binding UrlImagen}" Width="80" Height="80"/>
+                                    <TextBlock Text="{Binding Nombre}" TextWrapping="Wrap" MaxWidth="130" TextAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+
+                <StackPanel Width="350" Background="White" Margin="10">
+                    <HeaderedContentControl Header="¿Nivel de ventas mensual?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+                    <ListBox BorderThickness="0" Width="300" HorizontalContentAlignment="Center" Margin="0,60,0,0">
+                        <ListBoxItem Padding="10" FontSize="18">Menos de $10,000</ListBoxItem>
+                        <ListBoxItem Padding="10" FontSize="18">De $10,000 a menos de $20,000</ListBoxItem>
+                        <ListBoxItem Padding="10" FontSize="18">De $20,000 a $30,000</ListBoxItem>
+                        <ListBoxItem Padding="10" FontSize="18">De $20,000 a $30,000</ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+
+                <StackPanel Width="350" Margin="10">
+                    <StackPanel Background="White">
+                        <HeaderedContentControl Header="Podemos apoyarte" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+                        <Button Style="{StaticResource button}" Margin="0,0,0,20" Click="SimularCredito">Simula tu crédito</Button>
+                    </StackPanel>
+
+                    <StackPanel Background="CornflowerBlue" Margin="0,30,0,0">
+                        <HeaderedContentControl Header="Tu préstamo" FontSize="18" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" FontSize="18" Content="Importe" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                            <TextBox Grid.Column="1" Width="200" Height="25" Name="importe"/>
+                        </Grid>
+
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" FontSize="18" Content="Plazo" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                            <TextBox Grid.Column="1" Width="200" Height="25" Name="plazo"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="25,0,0,0">
+                                Pago
+                                <LineBreak/>
+                                mensual
+                            </TextBlock>
+                            <TextBox Grid.Column="1" Width="200" Height="25" Name="pagoMensual"/>
+                        </Grid>
+                        <TextBlock Text="¡Contáctanos!" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,20,0,25"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
