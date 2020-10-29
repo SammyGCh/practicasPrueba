@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrediMujer.Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,9 +92,107 @@ namespace CrediMujer
 
         private void SimularCredito(object sender, RoutedEventArgs e)
         {
-            string nombre = (negociosList.SelectedItem as Item).Nombre;
+            if (EstanTodosSeleccionados())
+            {
+                TipoNegocio negocioSeleccionado = ObtenerNegocioSeleccionado();
+                TipoProducto productoSeleccionado = ObtenerProductoSeleccionado();
+                NivelVentas nivelVentasSeleccionado = ObtenerNivelVentasSeleccionado();
 
-            MessageBox.Show(nombre);
+                Credito creditoCalculado = CalculadorCredito.CalcularCredito(negocioSeleccionado, productoSeleccionado, nivelVentasSeleccionado);
+
+                importe.Text = "$" + creditoCalculado.Importe;
+                plazo.Text =  creditoCalculado.Plazo + " años";
+                pagoMensual.Text = "$" + creditoCalculado.PagoMensual;
+            }
+            else
+            {
+                MessageBox.Show("Por favor selecciona las opciones solicitadas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool EstanTodosSeleccionados()
+        {
+            bool estanSeleccionados = false;
+
+            if ((ventasMensualList.SelectedItem != null) && (productosBox.SelectedItem != null) && (negociosList.SelectedItem != null))
+            {
+                estanSeleccionados = true;
+            }
+
+            return estanSeleccionados;
+        }
+
+        private TipoNegocio ObtenerNegocioSeleccionado()
+        {
+            TipoNegocio tipoNegocio = new TipoNegocio();
+            string negocio = (negociosList.SelectedItem as Item).Nombre;
+
+            switch (negocio)
+            {
+                case "Establecido":
+                    tipoNegocio = TipoNegocio.Establecido;
+                    break;
+                case "Venta directa":
+                    tipoNegocio = TipoNegocio.VentaDirecta;
+                    break;
+                case "Semi-fijo":
+                    tipoNegocio = TipoNegocio.SemiFijo;
+                    break;
+                case "Móvil":
+                    tipoNegocio = TipoNegocio.Movil;
+                    break;
+            }
+
+            return tipoNegocio;
+        }
+
+        private TipoProducto ObtenerProductoSeleccionado()
+        {
+            TipoProducto tipoProducto = new TipoProducto();
+            string productoSeleccionado = (productosBox.SelectedItem as Item).Nombre;
+
+            switch (productoSeleccionado)
+            {
+                case "Moda y belleza":
+                    tipoProducto = TipoProducto.ModaYBelleza;
+                    break;
+                case "Abarrotes":
+                    tipoProducto = TipoProducto.Abarrotes;
+                    break;
+                case "Alimentos preparados":
+                    tipoProducto = TipoProducto.AlimentosPreparados;
+                    break;
+                case "Productos de limpieza para el hogar (incluye blancos)":
+                    tipoProducto = TipoProducto.ProductosLimpiezaHogar;
+                    break;
+            }
+
+            return tipoProducto;
+        }
+
+        private NivelVentas ObtenerNivelVentasSeleccionado()
+        {
+            NivelVentas nivelVentas = new NivelVentas();
+            int largoAQuitar = 37;
+            string nivelSeleccionado = ventasMensualList.SelectedItem.ToString().Substring(largoAQuitar);
+
+            switch (nivelSeleccionado)
+            {
+                case "Menos de $10,000":
+                    nivelVentas = NivelVentas.MenosDe10;
+                    break;
+                case "De $10,000 a menos de $20,000":
+                    nivelVentas = NivelVentas.De10a20;
+                    break;
+                case "De $20,000 a $30,000":
+                    nivelVentas = NivelVentas.De20a30;
+                    break;
+                case "Más de $30,000":
+                    nivelVentas = NivelVentas.MasDe30;
+                    break;
+            }
+
+            return nivelVentas;
         }
     }
 }
