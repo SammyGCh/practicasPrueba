@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:CrediMujer"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Inicio" Height="450" Width="800">
+        Title="Inicio" Height="880" Width="1596">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -27,7 +27,7 @@
                    HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,30,10"/>
 
             <StackPanel Grid.Column="1" >
-                
+
             </StackPanel>
         </Grid>
 
@@ -57,9 +57,9 @@
             </Grid>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Width="350" Background="White" Margin="10" HorizontalAlignment="Center">
+                <StackPanel Width="326" Background="White" Margin="10" HorizontalAlignment="Center">
                     <HeaderedContentControl Header="¿Cómo es tu negocio?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
-                    <ListView x:Name="negociosList" BorderThickness="0" Margin="0,30,0,0">
+                    <ListView x:Name="negociosList" BorderThickness="0" Margin="0,0,0,0">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="2" Width="300"/>
@@ -83,9 +83,9 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel Width="350" Background="White" Margin="10">
+                <StackPanel Width="305" Background="White" Margin="10">
                     <HeaderedContentControl Header="¿Cuál es tu producto?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
-                    <ListView x:Name="productosBox" BorderThickness="0" Margin="0,30,0,0">
+                    <ListView x:Name="productosBox" BorderThickness="0" Margin="0,0,0,0">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="2" Width="300"/>
@@ -109,26 +109,23 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel Width="350" Background="White" Margin="10">
+                <StackPanel Width="315" Background="White" Margin="10">
                     <HeaderedContentControl Header="¿Nivel de ventas mensual?" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
-                    <ListBox x:Name="ventasMensualList" BorderThickness="0" Width="300" HorizontalContentAlignment="Center" Margin="0,60,0,0">
-                        <ListBoxItem Padding="10" FontSize="18">Menos de $10,000</ListBoxItem>
-                        <ListBoxItem Padding="10" FontSize="18">De $10,000 a menos de $20,000</ListBoxItem>
-                        <ListBoxItem Padding="10" FontSize="18">De $20,000 a $30,000</ListBoxItem>
-                        <ListBoxItem Padding="10" FontSize="18">Más de $30,000</ListBoxItem>
+                    <ListBox x:Name="ventasMensualList" BorderThickness="0" Width="300" HorizontalContentAlignment="Center" Margin="0,20,0,0">
+                        <ListBoxItem Padding="10" FontSize="18" Content="Menos de $10,000"/>
+                        <ListBoxItem Padding="10" FontSize="18" Content="De $10,000 a menos de $20,000"/>
+                        <ListBoxItem Padding="10" FontSize="18" Content="De $20,000 a $30,000"/>
+                        <ListBoxItem Padding="10" FontSize="18" Content="Más de $30,000"/>
                     </ListBox>
                 </StackPanel>
 
                 <StackPanel Width="350" Margin="10">
-                    <StackPanel Background="White">
-                        <HeaderedContentControl Header="Podemos apoyarte" FontSize="23" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
-                        <Button x:Name="simularCreditoButton" Style="{StaticResource button}" Margin="0,0,0,20" Click="SimularCredito">
-                            Simula tu crédito
-                        </Button>
+                    <StackPanel Background="White" Height="95">
+                        <HeaderedContentControl Header="Podemos apoyarte" FontSize="23" HorizontalAlignment="Center" Margin="5" FontWeight="Bold"></HeaderedContentControl>
+                        <Button x:Name="simularCreditoButton" Style="{StaticResource button}" Margin="50,0,50,20" Click="SimularCredito" Content="Simula tu crédito"/>
                     </StackPanel>
-
-                    <StackPanel Background="CornflowerBlue" Margin="0,30,0,0">
-                        <HeaderedContentControl Header="Tu préstamo" FontSize="18" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"></HeaderedContentControl>
+                    <StackPanel Background="CornflowerBlue" Margin="0,0,0,0" Height="393">
+                        <HeaderedContentControl Header="Tu préstamo" FontSize="18" HorizontalAlignment="Center" Margin="20" FontWeight="Bold"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -137,7 +134,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" FontSize="18" Content="Importe" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-                            <TextBox Grid.Column="1" Width="200" Height="25" Name="importe" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+                            <TextBox Grid.Column="1" Width="200" Height="25" x:Name="importe" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
                         </Grid>
 
                         <Grid Margin="10">
@@ -147,7 +144,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" FontSize="18" Content="Plazo" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                            <TextBox Grid.Column="1" Width="200" Height="25" Name="plazo" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+                            <TextBox Grid.Column="1" Width="200" Height="25" x:Name="plazo" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
                         </Grid>
 
                         <Grid>
@@ -156,12 +153,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="25,0,0,0">
-                                Pago
-                                <LineBreak/>
-                                mensual
-                            </TextBlock>
-                            <TextBox Grid.Column="1" Width="200" Height="25" Name="pagoMensual" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
+                            <TextBlock Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="25,0,0,0"><Run Text="Pago"/><LineBreak/><Run Text="mensual"/></TextBlock>
+                            <TextBox Grid.Column="1" Width="200" Height="25" x:Name="pagoMensual" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
                         </Grid>
                         <TextBlock Text="¡Contáctanos!" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,20,0,25"/>
                     </StackPanel>
