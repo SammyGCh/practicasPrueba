@@ -5,124 +5,131 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaDeArbitraje"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        
         Title="Inicio" Height="840" Width="1200">
-    <Grid Background="#F3F3F3">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="300"/>
-            <RowDefinition Height="310"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer>
+        <Grid Background="#F3F3F3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="310"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="SISTEMA DE ARBITRAJE" TextAlignment="Center" FontSize="20" 
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="SISTEMA DE ARBITRAJE" TextAlignment="Center" FontSize="20" 
                        FontWeight="SemiBold" Margin="30" Foreground="#994C00"/>
 
-            <StackPanel Margin="30,30,30,0" Grid.Column="1">
-                <TextBlock Text="B i l i o t e c a" TextAlignment="Right" FontSize="45" FontFamily="Times New Roman Bold" 
+                <StackPanel Margin="30,30,30,0" Grid.Column="1">
+                    <TextBlock Text="B i l i o t e c a" TextAlignment="Right" FontSize="45" FontFamily="Times New Roman Bold" 
                            FontStretch="UltraExpanded" Foreground="#994C00"/>
-                <TextBlock Text="Universidad de Saqqara" TextAlignment="Right" FontSize="15" 
+                    <TextBlock Text="Universidad de Saqqara" TextAlignment="Right" FontSize="15" 
                            FontFamily="Times New Roman Bold" Foreground="#994C00"/>
-                <TextBlock Text="Artículos técnicos-científicos" TextAlignment="Right"  FontSize="15" 
+                    <TextBlock Text="Artículos técnicos-científicos" TextAlignment="Right"  FontSize="15" 
                            FontFamily="Times New Roman" Margin="0,20,0,0" Foreground="#1FB0B0"/>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Content="Artículos publicados" Style="{StaticResource ButtonStyle}" Click="VerArticulosPublicados"/>
-                <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
-                <Button Content="Evaluación de artículos" Style="{StaticResource ButtonStyle}" Click="VerArticulosAEvaluar"/>
-                <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
-                <Button Content="Liberación de artículos" Style="{StaticResource ButtonStyle}" Click="VerArticulosALiberar"/>
-                <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
-                <Button Content="Artículos rechazados" Style="{StaticResource ButtonStyle}" Click="VerArticulosRechazados"/>
-                <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
-                <Button Content="Salir" Style="{StaticResource ButtonStyle}" Click="Salir"/>
-            </StackPanel>
-
-            <Frame Grid.Column="1" Background="AntiqueWhite" x:Name="navigationFrame" NavigationUIVisibility="Hidden" Source="Paginas/ArticulosPublicados.xaml"/>
-        </Grid>
-
-        <StackPanel Grid.Row="2" Background="White" Margin="30,5,30,0">
-            <TextBlock Text="Evaluación de artículo" Margin="10" FontWeight="Bold" FontSize="17"/>
-            <TextBlock Text="Survey Smart Parking" FontWeight="Light" FontSize="15" Margin="10,0,0,0"/>
-            <TextBlock Text="Cerdán, A.; García, A. - Recibido 15-Sep-2020 23:49" FontWeight="Light" FontSize="14" Foreground="Gray" Margin="10,0,0,0"/>
-            <TextBlock Text="Concepto de evaluación (obligatorio)" Margin="10" FontWeight="SemiBold" FontSize="14"/>
-
-            <Grid>
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" Margin="4">
-                        <TextBlock Foreground="Gray" Text="1. Estructura general.................................................................(0-10)" Margin="10,0,10,0"/>
-                        <TextBox x:Name="estructuraGeneral" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="4">
-                        <TextBlock Foreground="Gray" Text="2. Introducción (problemática y objetivo)........................(0-20)" Margin="10,0,10,0"/>
-                        <TextBox x:Name="introduccion" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="4">
-                        <TextBlock Foreground="Gray" Text="3. Congruencia metodológica...............................................(0-40)" Margin="10,0,10,0"/>
-                        <TextBox x:Name="congruencia" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="4">
-                        <TextBlock Foreground="Gray" Text="4. Resultados................................................................................(0-20)" Margin="10,0,10,0"/>
-                        <TextBox x:Name="resultados" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="4">
-                        <TextBlock Foreground="Gray" Text="5. Literatura citada.....................................................................(0-10)" Margin="10,0,10,0"/>
-                        <TextBox x:Name="literaturaCitada" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
-                    </StackPanel>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0" Margin="10,0,0,0" FontSize="11" HorizontalAlignment="Left" Text="Considere que con una evaluación menor al 70% es recomendable como NO aprobado el artículo" TextWrapping="Wrap"/>
-
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Height="20" Width="90" Margin="0,0,35,0">
-                            <TextBlock Text="TOTAL" Foreground="Gray" FontWeight="Bold"/>
-                            <TextBox x:Name="total" Width="40" Margin="10,0,0,0" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Artículos publicados" Style="{StaticResource ButtonStyle}" Click="VerArticulosPublicados"/>
+                    <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
+                    <Button Content="Evaluación de artículos" Style="{StaticResource ButtonStyle}" Click="VerArticulosAEvaluar"/>
+                    <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
+                    <Button Content="Liberación de artículos" Style="{StaticResource ButtonStyle}" Click="VerArticulosALiberar"/>
+                    <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
+                    <Button Content="Artículos rechazados" Style="{StaticResource ButtonStyle}" Click="VerArticulosRechazados"/>
+                    <Border BorderBrush="#994C00" BorderThickness="0.5" Width="200"/>
+                    <Button Content="Salir" Style="{StaticResource ButtonStyle}" Click="Salir"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="¿Considera que el trabajo tiene la calidad para ser aceptado?" Foreground="Gray" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="Sí" x:Name="aceptadoCheck" Margin="0,0,20,0" Checked="AceptarTrabajo"/>
-                        <CheckBox Content="No" x:Name="noAceptadoCheck" Checked="RechazarTrabajo"/>
+                <Frame Grid.Column="1" Background="AntiqueWhite" x:Name="navigationFrame" NavigationUIVisibility="Hidden" Source="Paginas/ArticulosPublicados.xaml"/>
+            </Grid>
+
+            <StackPanel x:FieldModifier="public" Name="ContenedorEvaluacion" Visibility="Hidden" Grid.Row="2" Background="White" Margin="30,5,30,0">
+                <TextBlock Text="Evaluación de artículo" Margin="10" FontWeight="Bold" FontSize="17"/>
+                <TextBlock Text="{Binding Titulo}" FontWeight="Light" FontSize="15" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Autor}" FontWeight="Light" FontSize="14" Foreground="Gray" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding FechaCreacion}" FontWeight="Light" FontSize="14" Foreground="Gray" Margin="10,0,0,0"/>
+                </StackPanel>
+                
+                <TextBlock Text="Concepto de evaluación (obligatorio)" Margin="10" FontWeight="SemiBold" FontSize="14"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                            <TextBlock Foreground="Gray" Text="1. Estructura general.................................................................(0-10)" Margin="10,0,10,0"/>
+                            <TextBox x:Name="estructuraGeneral" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                            <TextBlock Foreground="Gray" Text="2. Introducción (problemática y objetivo)........................(0-20)" Margin="10,0,10,0"/>
+                            <TextBox x:Name="introduccion" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                            <TextBlock Foreground="Gray" Text="3. Congruencia metodológica...............................................(0-40)" Margin="10,0,10,0"/>
+                            <TextBox x:Name="congruencia" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                            <TextBlock Foreground="Gray" Text="4. Resultados................................................................................(0-20)" Margin="10,0,10,0"/>
+                            <TextBox x:Name="resultados" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                            <TextBlock Foreground="Gray" Text="5. Literatura citada.....................................................................(0-10)" Margin="10,0,10,0"/>
+                            <TextBox x:Name="literaturaCitada" Width="40" HorizontalContentAlignment="Center" MaxLength="2" TextChanged="SumarPuntaje"/>
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Margin="10,0,0,0" FontSize="11" HorizontalAlignment="Left" Text="Considere que con una evaluación menor al 70% es recomendable como NO aprobado el artículo" TextWrapping="Wrap"/>
+
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Height="20" Width="90" Margin="0,0,35,0">
+                                <TextBlock Text="TOTAL" Foreground="Gray" FontWeight="Bold"/>
+                                <TextBox x:Name="total" Width="40" Margin="10,0,0,0" IsReadOnly="True" HorizontalContentAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+
                     </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="¿Considera que el trabajo tiene la calidad para ser aceptado?" Foreground="Gray" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="Sí" x:Name="aceptadoCheck" Margin="0,0,20,0" Checked="AceptarTrabajo"/>
+                            <CheckBox Content="No" x:Name="noAceptadoCheck" Checked="RechazarTrabajo"/>
+                        </StackPanel>
+                        <Button Name="BotonEvaluar" Content="Evaluar" Margin="10,15,700,0" Width="70" Click="BotonEvaluar_Click"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Los artículos recibidos están licenciados bajo el "/>
+                    <TextBlock Text="Creative Commons Attribution Non-comercial Share Alike 3.0 License" Foreground="Orange"/>
                 </StackPanel>
             </Grid>
-        </StackPanel>
-
-        <Grid Grid.Row="3">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Los artículos recibidos están licenciados bajo el "/>
-                <TextBlock Text="Creative Commons Attribution Non-comercial Share Alike 3.0 License" Foreground="Orange"/>
-            </StackPanel>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Window>

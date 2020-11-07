@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SistemaDeArbitraje.Paginas;
+using SistemaDeArbitraje.ArticuloAdmin;
 
 namespace SistemaDeArbitraje
 {
@@ -20,6 +21,8 @@ namespace SistemaDeArbitraje
     /// </summary>
     public partial class Inicio : Window
     {
+        private int valorTotal = 0;
+
         public Inicio()
         {
             InitializeComponent();
@@ -28,21 +31,25 @@ namespace SistemaDeArbitraje
         private void VerArticulosPublicados(object sender, RoutedEventArgs e)
         {
             navigationFrame.Navigate(new ArticulosPublicados());
+            ContenedorEvaluacion.Visibility = Visibility.Hidden;
         }
 
         private void VerArticulosAEvaluar(object sender, RoutedEventArgs e)
         {
             navigationFrame.Navigate(new EvaluacionArticulos());
+            ContenedorEvaluacion.Visibility = Visibility.Visible;
         }
 
         private void VerArticulosALiberar(object sender, RoutedEventArgs e)
         {
             navigationFrame.Navigate(new LiberacionArticulos());
+            ContenedorEvaluacion.Visibility = Visibility.Hidden;
         }
 
         private void VerArticulosRechazados(object sender, RoutedEventArgs e)
         {
             navigationFrame.Navigate(new ArticulosRechazados());
+            ContenedorEvaluacion.Visibility = Visibility.Hidden;
         }
 
         private void Salir(object sender, RoutedEventArgs e)
@@ -73,7 +80,7 @@ namespace SistemaDeArbitraje
             int valorCongruencia = 0;
             int valorResultados = 0;
             int valorLiteratura = 0;
-            int valorTotal = 0;
+            
 
             try
             {
@@ -88,8 +95,64 @@ namespace SistemaDeArbitraje
 
             }
 
-            valorTotal = valorEstructuraGeneral + valorIntrodccion + valorCongruencia + valorResultados + valorLiteratura;
+             valorTotal = valorEstructuraGeneral + valorIntrodccion + valorCongruencia + valorResultados + valorLiteratura;
             total.Text = valorTotal.ToString();
+        }
+
+        private void BotonEvaluar_Click(object sender, RoutedEventArgs e)
+        {
+            Articulo articuloEvaluado = ContenedorEvaluacion.DataContext as Articulo;
+            if (articuloEvaluado != null)
+            {
+                if (!String.IsNullOrEmpty(congruencia.Text) && !String.IsNullOrEmpty(literaturaCitada.Text) &&
+                    !String.IsNullOrEmpty(estructuraGeneral.Text) && !String.IsNullOrEmpty(introduccion.Text) &&
+                    !String.IsNullOrEmpty(resultados.Text))
+                {
+                    if (aceptadoCheck.IsChecked.Value)
+                    {
+                        articuloEvaluado.Estado = "Evaluado";
+                        articuloEvaluado.calificacion = valorTotal;
+                        AdministradorArticulos.Evaluar(articuloEvaluado);
+                        LimpiarCampos();
+                        (navigationFrame.Content as EvaluacionArticulos).PulirLista(articuloEvaluado);
+                        MessageBox.Show("Articulo Evaluado");
+                    }
+                    else if (noAceptadoCheck.IsChecked.Value)
+                    {
+                        articuloEvaluado.Estado = "Rechazado";
+                        articuloEvaluado.calificacion = valorTotal;
+                        AdministradorArticulos.Evaluar(articuloEvaluado);
+                        LimpiarCampos();
+                        (navigationFrame.Content as EvaluacionArticulos).PulirLista(articuloEvaluado);
+                        MessageBox.Show("Articulo Rechazado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor seleccione una aceptacion");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese datos a los campos del criterio de evaluacion");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un articulo");
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            ContenedorEvaluacion.DataContext = null;
+            congruencia.Text = "";
+            literaturaCitada.Text = "";
+            estructuraGeneral.Text = "";
+            introduccion.Text = "";
+            resultados.Text = "";
+            aceptadoCheck.IsChecked = false;
+            noAceptadoCheck.IsChecked = false;
+
         }
     }
 }

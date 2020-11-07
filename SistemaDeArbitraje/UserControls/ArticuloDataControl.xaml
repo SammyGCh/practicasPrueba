@@ -1,0 +1,118 @@
+﻿<UserControl
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaDeArbitraje.UserControls"
+             xmlns:SistemaDeArbitraje="clr-namespace:SistemaDeArbitraje" x:Class="SistemaDeArbitraje.UserControls.ArticuloDataControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+
+    <Border Background="White" BorderThickness="5" Margin="5" Width="600" CornerRadius="25">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="Black" Direction="300" ShadowDepth="3" BlurRadius="10" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Border.Style>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Margin="15">
+                <Image>
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="Recibido">
+                                    <Setter Property="Source" Value="C:\Users\parke\Desktop\SPP\practicasPrueba\SistemaDeArbitraje\Imagenes\Recibido.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Evaluado">
+                                    <Setter Property="Source" Value="C:\Users\parke\Desktop\SPP\practicasPrueba\SistemaDeArbitraje\Imagenes\Evaluado.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Rechazado">
+                                    <Setter Property="Source" Value="C:\Users\parke\Desktop\SPP\practicasPrueba\SistemaDeArbitraje\Imagenes\Rechazado.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Liberado">
+                                    <Setter Property="Source" Value="C:\Users\parke\Desktop\SPP\practicasPrueba\SistemaDeArbitraje\Imagenes\Liberado.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Image.Style>
+                </Image>
+            </StackPanel>
+            <StackPanel Margin="20">
+                
+                <TextBlock Text="{Binding Titulo}" Width="380" TextWrapping="WrapWithOverflow"/>
+                <TextBlock Text="{Binding Autor}" Width="380"/>
+                <TextBlock Text="{Binding Estado}" Width="380"/>
+                
+                <TextBlock Text="{Binding FechaCreacion}" Width="380" Visibility="Visible">
+                    <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Estado}" Value="Evaluado">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Liberado">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="{Binding FechaLiberacion}" Width="380" Visibility="Visible">
+                    <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Estado}" Value="Recibido">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Rechazado">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Width="150">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="Recibido">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Liberado">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Estado}" Value="Rechazado">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Text="Calificacion = "/>
+                    <TextBlock Text="{Binding calificacion}" Width="15"/>
+                    <TextBlock Text="Aprobado" Width="60" Visibility="Visible">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding dictamen}" Value="1">
+                                        <Setter Property="Text" Value="Aprobado"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding dictamen}" Value="0">
+                                        <Setter Property="Text" Value="No Aprobado"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+            
+
+        </StackPanel>
+    </Border>
+</UserControl>
