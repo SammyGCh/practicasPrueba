@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculaTusCalorias"
         mc:Ignorable="d"
-        Title="Inicio" Height="750" Width="900">
+        Title="Inicio" Height="750" Width="900" Icon="/Imagenes/kcal.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="130"/>
@@ -61,6 +61,8 @@
                               HorizontalContentAlignment="Center" FontSize="13">
                         
                     </ComboBox>
+
+                    <TextBlock Text="años" FontSize="15" Margin="10,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300">
@@ -70,7 +72,7 @@
                     </Border>
 
                     <TextBox x:Name="estaturaText" Width="130" Margin="10,0,0,0" 
-                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLength="3"/>
+                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLength="6"/>
                     <TextBlock Text="cm" FontSize="15" Margin="10,0,0,0"/>
                 </StackPanel>
 
@@ -80,7 +82,7 @@
                     </Border>
 
                     <TextBox x:Name="pesoActualText" Width="130" Margin="10,0,0,0" 
-                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLength="4"/>
+                             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLength="6"/>
                     <TextBlock Text="kgs" FontSize="15" Margin="10,0,0,0"/>
                 </StackPanel>
             </StackPanel>
@@ -112,6 +114,9 @@
                     <TextBox x:Name="caloriasPorDiaText" Text="Por día" Width="130" IsReadOnly="True" VerticalContentAlignment="Center"
                              HorizontalContentAlignment="Center" FontSize="15" Background="#6CBDFF" 
                              Foreground="White" Margin="50,0,0,0"/>
+
+                    <Button Content="Limpiar campos" Click="LimparCampos" 
+                            Width="120" Height="35" Background="White" FontSize="15" Cursor="Hand" BorderBrush="#2746BC" Margin="50,0,0,0"/>
                 </StackPanel>
 
                 <TextBlock Text="*Consulta a tu médico. Esta información es una guía que pretende ser un producto de referencia, las acciones que se tomen con base en esta información son responsabilidad de quien las efectue"
