@@ -71,7 +71,7 @@ namespace CalculaTusCalorias
                     if (EsPesoCorecto())
                     {
                         Paciente paciente = ObtenerPaciente();
-                        float caloriasPorDia = CalcularCaloriasPorDia(paciente);
+                        double caloriasPorDia = CalcularCaloriasPorDia(paciente);
 
                         caloriasPorDiaText.Text = caloriasPorDia.ToString();
                     }
@@ -98,9 +98,39 @@ namespace CalculaTusCalorias
             }
         }
 
-        private float CalcularCaloriasPorDia(Paciente paciente)
+        private double CalcularCaloriasPorDia(Paciente paciente)
         {
-            throw new NotImplementedException();
+            double TMB = ((10 * paciente.Peso) + (6.25 * paciente.Estatura) - (5*paciente.Edad));
+
+            if (paciente.Genero.Equals("Masculino"))
+            {
+                TMB += 5;
+            }
+            else
+            {
+                TMB -= 161;
+            }
+
+            switch (paciente.ActividadFisica)
+            {
+                case "Poca actividad":
+                    TMB *= 1.2;
+                    break;
+                case "Ejercicio ligero":
+                    TMB *= 1.375;
+                    break;
+                case "Ejercicio moderado":
+                    TMB *= 1.55;
+                    break;
+                case "Deporte regular":
+                    TMB *= 1.725;
+                    break;
+                case "Deportista de élite":
+                    TMB *= 1.9;
+                    break;
+            }
+
+            return TMB;
         }
 
         private Paciente ObtenerPaciente()
