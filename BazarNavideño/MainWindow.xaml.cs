@@ -20,9 +20,36 @@ namespace BazarNavideño
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Producto> stock = new List<Producto>
+        {
+            new Producto
+            {
+                Nombre = "Paquetes de Tines",
+                Cantidad = 200
+            },
+
+            new Producto
+            {
+                Nombre = "Suéteres para hombre",
+                Cantidad = 50
+            },
+
+            new Producto
+            {
+                Nombre = "Suéteres para mujer",
+                Cantidad = 150
+            }
+        };
+
         public MainWindow()
         {
             InitializeComponent();
         }
+    }
+
+    public class Producto
+    {
+        public string Nombre { get; set; }
+        public int Cantidad { get; set; }
     }
 }
