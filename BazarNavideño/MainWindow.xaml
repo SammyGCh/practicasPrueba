@@ -44,12 +44,12 @@
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="NOMBRE" TextAlignment="Left" Width="90" FontSize="15" Foreground="White"/>
-                <TextBox Width="250" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="nombreClienteText" Width="250" VerticalContentAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="DIRECCIÓN" Width="90" FontSize="15" Foreground="White"/>
-                <TextBox Width="250" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="direccionClienteText" Width="250" VerticalContentAlignment="Center"/>
             </StackPanel>
         </StackPanel>
 
@@ -76,8 +76,8 @@
                         $250.00
                     </TextBlock>
 
-                    <TextBox Width="50" Height="30" VerticalAlignment="Top" Margin="140,0,0,0" VerticalContentAlignment="Center"
-                             HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="cantidadSetTinesText" Width="50" Height="30" VerticalAlignment="Top" Margin="140,0,0,0" VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center" Text="0" MaxLength="4" TextCompositionManager.PreviewTextInput="EsTextoNumero"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="500" Background="Red" 
@@ -94,8 +94,8 @@
                         $520.00
                     </TextBlock>
 
-                    <TextBox Width="50" Height="30" VerticalAlignment="Top" Margin="123,0,0,0" VerticalContentAlignment="Center"
-                             HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="cantidadSueterHombreText" Width="50" Height="30" VerticalAlignment="Top" Margin="123,0,0,0" VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center" Text="0" MaxLength="4" TextCompositionManager.PreviewTextInput="EsTextoNumero"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="500" Background="Red" 
@@ -112,8 +112,8 @@
                         $450.00
                     </TextBlock>
 
-                    <TextBox Width="50" Height="30" VerticalAlignment="Top" Margin="123,0,0,0" VerticalContentAlignment="Center"
-                             HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="cantidadSueterMujerText" Width="50" Height="30" VerticalAlignment="Top" Margin="123,0,0,0" VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center" Text="0" MaxLength="4" TextCompositionManager.PreviewTextInput="EsTextoNumero"/>
                 </StackPanel>
             </StackPanel>
 
@@ -128,7 +128,7 @@
 
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="CÓDIGO DE DESCUENTO" TextWrapping="Wrap" Width="80" HorizontalAlignment="Center" Foreground="White"/>
-                        <TextBox Width="100" Height="25" HorizontalAlignment="Center" Margin="5" HorizontalContentAlignment="Center"
+                        <TextBox x:Name="codigoDescuentoText" Width="100" Height="25" HorizontalAlignment="Center" Margin="5" HorizontalContentAlignment="Center"
                                  VerticalContentAlignment="Center"/>
                     </StackPanel>
 
@@ -180,7 +180,8 @@
                                  IsReadOnly="True"/>
                     </Grid>
 
-                    <Button Content="¡Gracias por tu compra!" Style="{StaticResource Boton}" Height="30" Width="200" Cursor="Hand"/>
+                    <Button Content="¡Gracias por tu compra!" Style="{StaticResource Boton}" Height="30" 
+                            Width="200" Cursor="Hand" Click="RealizarPedidoBoton"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
                         <Image Source="/Imagenes/trineo.png" Width="100"/>
@@ -192,9 +193,9 @@
                     </StackPanel>
 
                     <Button Content="Siguiente" Width="110" Height="30" Background="Green" Foreground="White" FontSize="16"
-                        Margin="10" Cursor="Hand"/>
+                        Margin="10" Cursor="Hand" Click="RealizarOtroPedido"/>
                     <Button Content="Salir" Width="110" Height="30" Background="Green" Foreground="White" FontSize="16"
-                            Cursor="Hand"/>
+                            Cursor="Hand" Click="Salir"/>
                 </StackPanel>
             </Grid>
             
